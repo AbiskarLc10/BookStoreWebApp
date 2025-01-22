@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+
+package review;
+
+
+// enum Rating {
+//     EXTREMLY_BAD = 1;
+//     POOR = 2;
+//     AVERAGE = 3;
+//     GOOD = 4;
+//     EXCELLENT = 5;
+// }
+
+message BookReview{
+    string reviewerId = 1;
+    string bookId =2 ;
+    string description = 3;
+    double ratings = 4;
+    string bookName = 5;
+    ReviewerType reviewerType = 6;
+}
+
+enum ReviewerType{
+    CUSTOMER = 0;
+    AUTHOR = 1;
+}
+
+message AddBookReviewRequest {
+    BookReview review = 1;
+}
+
+message AddBookReviewResponse {
+    string message = 1;
+    string bookName = 2;
+    string description = 3;
+    double ratings = 4;
+    ReviewerType reviewerType = 5;
+}
+
+message DeleteBookReviewRequest{
+    string reviewId = 1;
+    string reviewerId = 2;
+    string bookId = 3;
+}
+message DeleteBookReviewResponse {
+    bool success = 1;
+}
+
+message EditBookReviewRequest{
+    string reviewId = 1;
+    string reviewerId = 2;
+    string bookId = 3;
+    string description = 4;
+    double ratings = 5;
+}
+
+message EditBookReviewResponse{
+    string message = 1;
+    bool success = 2;
+}
+
+message GetAllReviewsRequest {
+    string bookId = 1;
+}
+
+
+message GetAllReviewsResponse {
+    repeated BookReview reviews = 1;
+}
+
+service ReviewService {
+    rpc AddBookReview(AddBookReviewRequest) returns (AddBookReviewResponse){};
+    rpc DeleteBookReview(DeleteBookReviewRequest) returns (DeleteBookReviewResponse){};
+    rpc EditBookReview(EditBookReviewRequest) returns (EditBookReviewResponse) {};
+    rpc GetAllReviews(GetAllReviewsRequest) returns (GetAllReviewsResponse) {};
+}

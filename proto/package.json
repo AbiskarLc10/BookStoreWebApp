@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "protobufjs-cli": "^1.1.3"
+  },
+  "name": "proto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle:proto": "node_modules\\.bin\\pbjs -t json -o bundle.json *.proto"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
